@@ -1,0 +1,65 @@
+<html>
+    <head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <script src="https://code.jquery.com/jquery-4.0.0.js" integrity="sha256-9fsHeVnKBvqh3FB2HYu7g2xseAZ5MlN6Kz/qnkASV8U=" crossorigin="anonymous"></script>
+    <style>
+        .completed{
+            text-decoration: line-through;
+            color: gray;
+        }
+    </style>    
+</head>
+    <body>
+        <div class="container mt-5">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-header bg-info text-white text-center">
+                            Todo Application
+                        </div>
+                        <div class="card-body">
+                            <div class="input-group mb-3">
+                                <input type="text"
+                                id = "task"
+                                class="form-control"
+                                placeholder="Enter task">
+                                <button id = "add" class="btn btn-success">Add task</button>
+                            </div>
+                            <p>Task count:<span id="count">0</span></p>
+                            <ul id="tasklist" class="list-group"></ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        <script>
+            $("#add").click(function(){
+                let task=$("#task").val().trim();
+                console.log(task);
+                $("#tasklist").append(`
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <span class="taskname">${task}</span>
+                    <div>
+                        <button class = "btn btn-success btn-sm complete"><i class="bi bi-check2-circle"></i></button>
+                        <button class = "btn btn-danger btn-sm delete"><i class="bi bi-trash"></i></button>
+                    </div>
+                </li>
+                `);
+                $("#task").val("");
+                updatecount();
+            });
+            $("#tasklist").on("click",".complete",function(){
+                $(this).closest("li").find(".taskname").toggleClass("completed");
+                
+            });
+            $("#tasklist").on("click",".delete",function(){
+                $(this).closest("li").remove();
+                updatecount();
+            });
+            function updatecount(){
+                $("#count").text($("#tasklist li").length);
+            }
+        </script>
+    </body>
+</html>

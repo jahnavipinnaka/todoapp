@@ -1,0 +1,23 @@
+<html>
+    <head>
+        <script src="https://code.jquery.com/jquery-4.0.0.js" integrity="sha256-9fsHeVnKBvqh3FB2HYu7g2xseAZ5MlN6Kz/qnkASV8U=" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <input type="text" id="name" placeholder="Enter name"><br/>
+        <button id="btn">Submit</button>
+        <div id="res">
+            result will come here
+        </div>
+        <script>
+            let count=0;
+            $("#btn").click(function(){
+                count++;
+                let name=$("#name").val();
+                $("#res").html(`
+                <h2> Welcome, ${name} </h2>
+                <p> You clicked button ${count} time(s) </p>
+                `)
+            })
+        </script>
+    </body>
+</html>
